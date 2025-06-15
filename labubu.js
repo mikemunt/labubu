@@ -4,7 +4,7 @@
 // @version      1.0
 // @description  auto click elements on Popnow website
 // @author       You
-// @match        http://www.popmart.com/us/pop-now/set/*
+// @match        https://www.popmart.com/us/pop-now/set/*
 // @grant        none
 // @run-at       document-idle
 // ==/UserScript==
@@ -15,9 +15,9 @@
     //wait for the page to be fully loaded
     function waitForPageLoad() {
         if (document.readyState === 'complete') {
-            console.log(` [${new Date().toISOString()}] Page loaded, starting PopNow script...`);
+            console.log(`[${new Date().toISOString()}] Page loaded, starting PopNow script...`);
             setTimeout(() => {
-                console.log(` [${new Date().toISOString()}] Waiting 3 seconds before starting...`);
+                console.log(`[${new Date().toISOString()}] Waiting 3 seconds before starting...`);
             }, 3000);
             startPopNowScript();
         } else {
@@ -110,7 +110,7 @@
                         if (checkboxes.length > 0) {
                             const checkbox = checkboxes[checkboxes.length - 1];
                             //Only click if not already checked
-                            const isChecked = checkbox.querySelector(',ant-checkbox-checked');
+                            const isChecked = checkbox.querySelector('.ant-checkbox-checked');
                             if (!isChecked) {
                                 checkbox.click();
                             }
@@ -155,7 +155,7 @@
                              statusIndicator.textContent = 'PopNew Restarting...';
                              statusIndicator.style.backgroundColor = '#6c757d';
                              setTimeout(() => {
-                                 location,reload();
+                                 location.reload();
                              }, REFRESH_DELAY);
                         }
                     }, ADD_BAG_DELAY);
@@ -191,7 +191,7 @@
             }
             cycleCount = 0;
             intervalId = setInterval(mainIntervalFunction, MAIN_DELAY);
-            window.popNowintervalId = intervalId;
+            window.popNowIntervalId = intervalId;
             console.log(`[${new Date().toISOString()}] PopNow script restarted by keyboard shortcut`);
             alert('PopNow script restarted!');
             stopButton.textContent = 'Stop PopNow Script';
@@ -206,7 +206,7 @@
     const stopButton = document.createElement('button');
     stopButton.textContent = 'Stop PopNow Script';
     stopButton.style.cssText = `
-        positon: fixed;
+        position: fixed;
         top: 78px;
         right: 180px;
         z-index: 10000;
@@ -216,12 +216,12 @@
         padding: 6px 10px;
         border-radius: 4px;
         cursor: pointer;
-        font-familay: Arial, sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     `;
     stopButton.onclick = function() {
-        clearIntreval(intervalId);
+        clearInterval(intervalId);
         console.log(`[${new Date().toISOString()}] PopNow script stopped by button click`);
         stopButton.textContent = 'Script Stopped';
         stopButton.style.backgroundColor = '#dc3545';
@@ -234,7 +234,7 @@
     const startButton = document.createElement('button');
     startButton.textContent = 'Stop PopNow Script';
     startButton.style.cssText = `
-        positon: fixed;
+        position: fixed;
         top: 78px;
         right: 280px;
         z-index: 10000;
@@ -244,7 +244,7 @@
         padding: 6px 10px;
         border-radius: 4px;
         cursor: pointer;
-        font-familay: Arial, sans-serif;
+        font-family: Arial, sans-serif;
         font-size: 10px;
         box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         display: none;
